@@ -1,0 +1,513 @@
+*{
+    box-sizing: border-box;
+    /* font-family: Arial, Helvetica, sans-serif; */
+    transition: all .2s linear;
+}
+.error{color: red;}
+.main{
+    min-height: 100vh;
+    width: 100vw;
+    background:  linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.1)),url(\src\assets\images\dash1.jpg) no-repeat;
+    /* background: url(https://picsum.photos/200/300) no-repeat; */
+    background-size: cover;
+    background-position: center;
+    align-items: center ;
+}
+/* ------------------header------------------- */
+
+.flex{
+    display: flex;
+    gap: var(--gap,5rem);
+}
+
+
+.primary-header{
+    align-items: center;
+    justify-content: space-between;
+}
+.mobile-nav-toggle{
+    display: none;
+}
+
+.primary-navigation{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: rgba(255,255,255,.1);
+    
+    border-radius: 5px ;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    border-bottom: 1px solid rgba(255,255,255,.3);
+    border-left: 1px solid rgba(255,255,255,.3);
+    backdrop-filter: blur(10px);
+}
+@supports(backdrop-filter: blur(1rem)){
+    .primary-navigation{
+
+        background: hsl(0 0% 100% / 0.1);
+        backdrop-filter: blur(1rem);
+}
+    }
+
+.primary-navigation a{
+    text-decoration: none;
+}
+.primary-navigation a>[aria-hidden="true"]{
+    font-weight: 700;
+    margin-inline-end: 0.75em;
+}
+
+@media (max-width:35em) {
+    .primary-navigation{
+        --gap:2em;
+
+        position: fixed;
+        z-index: 1000;
+        inset: 0 0 0 30%;
+
+        flex-direction: column;
+        padding: min(30vh,10rem) 2em;
+
+        transform: translateX(100%);
+        transition: transform 350ms ease;
+
+    }
+    .primary-navigation[data-visible="true"]{
+        transform: translateX(0%);
+    }
+
+    .mobile-nav-toggle{
+        display: block;
+        position: absolute;
+        z-index: 9999;
+        background-color: transparent;
+        background-image: url("/src/assets/images/hamburger-24.png");
+        background-repeat: no-repeat;
+        width: .5rem;
+        border: 0;
+        aspect-ratio: 1;
+        top: 2rem;
+        right: 2rem;
+    }
+
+    .mobile-nav-toggle[aria-expanded="true"]{
+        background-image: url(/src/assets/images/close.png);
+    }
+}
+@media (min-width:35em)and(max-width:55em) {
+    .primary-navigation a > span[aria-hidden]{
+        display: none;
+    }
+}
+@media (min-width:35em) {
+    .primary-navigation{
+        --gap:clamp(1.5rem,5vw,3rem);
+        padding-block: 2rem;
+        padding-inline : clamp(3rem,8vw,10rem);
+    }
+    
+}
+
+/* ------------------header------------------- */
+
+
+.form-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    align-items: center;
+    /* background: #ccc; */
+    margin: auto;
+    margin-top: 100px;
+    width: 100vw;
+}
+
+.create-container{
+    height: 580px;
+    width: 450px;
+    background: rgba(255,255,255,.1);
+    text-align: center ;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    border-top: 1px solid rgba(255,255,255,.3);
+    border-left: 1px solid rgba(255,255,255,.3);
+    backdrop-filter: blur(10px);
+}
+.form-container form h3{
+    margin-top: 35px;
+    font-size: 30px;
+    padding: 30px 0;
+    color:#ccc;
+    letter-spacing: 3px;
+}
+.form-container form i{
+    padding: 0 5px;
+    font-size: 20px;
+    color: #bbb;
+}
+.form-container form input{
+    outline: none;
+    border: none;
+    height: 40px;
+    width: 78%;
+    background: rgba(0,0,0,0.1);
+    color: rgba(255,255,255,.7);
+    box-shadow: 0 0 5px rgba(0,0,0,0.3) inset;
+    font-size: 17px;
+    padding: 0 10px;
+    margin: 22px 0;
+    margin-top: 0;
+    letter-spacing: 1px; 
+    border-radius: .3rem;
+}
+.form-container form input:hover{
+    box-shadow: 0 0 5px rgba(139, 139, 139, 0.3) inset ;
+    background: rgba(144, 143, 143, 0.1);
+}
+.form-container form textarea:hover{
+    box-shadow: 0 0 5px rgba(139, 139, 139, 0.3) inset ;
+    background: rgba(144, 143, 143, 0.1);
+}
+.form-container form textarea{
+    outline: none;
+    border: none;
+    height: 100px;
+    width: 78%;
+    background: rgba(0,0,0,0.1);
+    color: rgba(255,255,255,.7);
+    box-shadow: 0 0 5px rgba(0,0,0,0.3) inset;
+    font-size: 17px;
+    padding: 0 10px;
+    margin: 15px 0;
+    margin-top: 0;
+    letter-spacing: 1px; 
+    border-radius: .3rem;
+}
+
+.loginbtn{
+    outline: none;
+    border: none;
+    margin: auto;
+    margin-top: 20px;
+    width: 55%;
+    height: 40px;
+    background: linear-gradient(90deg,deeppink,blueviolet);
+    border-radius: 40px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginbtn::before{
+    content: "";
+    background-image: conic-gradient(
+        #f83c3c 200deg,
+        transparent 120deg
+    );
+    width: 100%;
+    height: 75%;
+    position: absolute;
+    animation: rotate 4s linear infinite;
+}
+.loginbtn::after{
+    content: "Create Event";
+    outline: none;
+    border: none;
+    width: 98%;
+    height: 35px;
+    background: linear-gradient(90deg,deeppink,blueviolet);
+    position: absolute;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: large;
+    letter-spacing: 1px;
+}
+.loginbtn:hover::after{
+    letter-spacing: 4px;
+    transition: all .2s linear;
+}
+@keyframes rotate {
+    0% {transform: rotate(0deg);}
+   100% {transform: rotate(-360deg);}
+}
+
+/* ---------------------sidebar---------------------- */
+
+.btnlist{
+    display: flex;
+    justify-content: start;
+    gap: 28px;
+    flex-direction: column;
+    height: 580px; 
+}
+.carbtn{
+    width: 15vw;
+    height: 6vh;
+    cursor: pointer;
+    text-align: center;
+    padding: auto;
+    color: white;
+    letter-spacing: 1px;
+}
+.carbtn:hover{
+    letter-spacing: 4px;
+    transition: .2s;
+    box-shadow: 0 1px 5px 0 #15f4ee inset, 0 1px 5px 0 #15f4ee;
+}
+
+
+/* ---------------------sidebar---------------------- */
+
+
+/* ---------------------Today---------------------- */
+.today-container {
+    padding: 20px;
+    height: 580px;
+    width: 580px;
+    /* background:  linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(\src\assets\images\banner.jpg) no-repeat ;
+    background-size: cover;
+    background-position: center; */
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    border-top: 1px solid rgba(255,255,255,.3);
+    border-left: 1px solid rgba(255,255,255,.3);
+    backdrop-filter: blur(10px);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.today-container h3, h1{
+    text-align: center;
+}
+.today-container h1 p h3{
+    z-index: 5;
+}
+
+/* ---------------------Today---------------------- */
+
+/* ---------------------update---------------------- */
+.updatebtn{
+    outline: none;
+    border: none;
+    margin: auto;
+    margin-top: 20px;
+    width: 55%;
+    height: 40px;
+    background: linear-gradient(90deg,deeppink,blueviolet);
+    border-radius: 40px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.updatebtn::before{
+    content: "";
+    background-image: conic-gradient(
+        #f83c3c 200deg,
+        transparent 120deg
+    );
+    width: 100%;
+    height: 75%;
+    position: absolute;
+    animation: rotate 4s linear infinite;
+}
+.updatebtn::after{
+    content: "Update Event";
+    outline: none;
+    border: none;
+    width: 98%;
+    height: 35px;
+    background: linear-gradient(90deg,deeppink,blueviolet);
+    position: absolute;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: large;
+    letter-spacing: 1px;
+}
+
+.update-container{
+    height: 580px;
+    width: 450px;
+    background: rgba(255,255,255,.1);
+    text-align: center ;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    border-top: 1px solid rgba(255,255,255,.3);
+    border-left: 1px solid rgba(255,255,255,.3);
+    backdrop-filter: blur(10px);
+}
+.searchbtn{
+    border: none;
+    outline: none;
+    height: 40px;
+    background: rgba(0,0,0,0.1);
+    color: rgba(255,255,255,.7);
+    box-shadow:   0 1px 5px 0 #15f4ee;
+    font-size: 17px;
+    padding: 0 10px;
+    margin: 22px 0;
+    margin-top: 0;
+    letter-spacing: 1px; 
+    border-radius: .3rem;
+}
+
+/* ---------------------update---------------------- */
+
+/* ---------------------View---------------------- */
+
+.view h3{
+    margin-top: 35px;
+    font-size: 30px;
+    padding: 30px 0;
+    color:#ccc;
+    letter-spacing: 3px;
+}
+.view-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.view-item{
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    color: white;
+    outline: none;
+    border: none;
+    height: 40px;
+    width: 78%;
+    background: rgba(0,0,0,0.1);
+    box-shadow: 0 0 5px rgba(0,0,0,0.3) inset;
+    font-size: 17px;
+    padding: 0 10px;
+    margin: 22px 0;
+    margin-top: 0;
+    letter-spacing: 1px; 
+    border-radius: .3rem;
+
+}
+
+.viewlist{
+    overflow: auto;
+    height:300px;
+}
+.viewlist li:hover{
+    transition: .2s;
+    box-shadow: 0 1px 5px 0 #15f4ee inset, 0 1px 5px 0 #15f4ee;
+
+}
+.viewlist::-webkit-scrollbar{width: 0;}
+
+.viewbtn{
+    outline: none;
+    border: none;
+    margin: auto;
+    margin-top: 20px;
+    width: 55%;
+    height: 40px;
+    background: linear-gradient(90deg,deeppink,blueviolet);
+    border-radius: 40px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.viewbtn::before{
+    content: "";
+    background-image: conic-gradient(
+        #f83c3c 200deg,
+        transparent 120deg
+    );
+    width: 100%;
+    height: 75%;
+    position: absolute;
+    animation: rotate 4s linear infinite;
+}
+.viewbtn::after{
+    content: "View Event";
+    outline: none;
+    border: none;
+    width: 98%;
+    height: 35px;
+    background: linear-gradient(90deg,deeppink,blueviolet);
+    position: absolute;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: large;
+    letter-spacing: 1px;
+}
+
+.viewbtn:hover::after{
+    letter-spacing: 4px;
+    transition: all .2s linear;
+}
+/* ---------------------View---------------------- */
+
+/* ---------------------Delete---------------------- */
+
+.deletebtn{
+    outline: none;
+    border: none;
+    margin: auto;
+    margin-top: 20px;
+    width: 55%;
+    height: 40px;
+    background: linear-gradient(90deg,deeppink,blueviolet);
+    border-radius: 40px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.deletebtn::before{
+    content: "";
+    background-image: conic-gradient(
+        #f83c3c 200deg,
+        transparent 120deg
+    );
+    width: 100%;
+    height: 75%;
+    position: absolute;
+    animation: rotate 4s linear infinite;
+}
+.deletebtn::after{
+    content: "Delete Event";
+    outline: none;
+    border: none;
+    width: 98%;
+    height: 35px;
+    background: linear-gradient(90deg,deeppink,blueviolet);
+    position: absolute;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: large;
+    letter-spacing: 1px;
+}
+
+.deletebtn:hover::after{
+    letter-spacing: 4px;
+    transition: all .2s linear;
+}
+/* ---------------------Delete---------------------- */

@@ -1,0 +1,174 @@
+<div class="main">
+    <header class="primary-header flex bg-transparent pt-4 mb-5">
+        <div class="text-white ms-4"><i class="fab fa-jedi-order fa-5x text-center"></i></div>
+        <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false"><span
+                class="sr-only">Menu</span></button>
+        <nav>
+            <ul id="primary-navigation" data-visible="false" class="primary-navigation flex">
+                <li class="active "><a (click)="todayE()"
+                        class="ff-sans-cond uppercase text-white letter-spacing-2"><span
+                            aria-hidden="true">00</span>Home</a></li>
+                <li class="active"><a (click)="createE()"
+                        class="ff-sans-cond uppercase text-white letter-spacing-2"><span
+                            aria-hidden="true">01</span>Create Event</a></li>
+                <li class="active"><a (click)="viewE()" class="ff-sans-cond uppercase text-white letter-spacing-2"><span
+                            aria-hidden="true">03</span>View Event</a></li>
+                <li class="active"><a (click)="logout()"
+                        class="ff-sans-cond uppercase text-white letter-spacing-2"><span
+                            aria-hidden="true">04</span>LogOut</a></li>
+                <li class="active"><a (click)="deleteUser()"
+                        class="ff-sans-cond uppercase text-white letter-spacing-2 btn btn-danger">Delete Account</a>
+                </li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <div class="form-container ">
+        <div class="btnlist">
+            <button class="car carbtn" (click)="todayE()">Todays Event</button>
+            <button class="car carbtn" (click)="createE()">Create Event</button>
+            <button class="car carbtn" (click)="updateE()">Update Event</button>
+            <button class="car carbtn" (click)="viewE()">View Event</button>
+            <button class="car carbtn" (click)="deleteE()">Delete Event</button>
+        </div>
+
+        <form [formGroup]="createForm" action="" *ngIf="create" class="create-container">
+            <h3>Create Event</h3>
+            <div class="error"
+                *ngIf="(this.createForm.get('ceventname')?.touched||this.createForm.get('ceventname')?.dirty)&&this.createForm.get('ceventname')?.errors">
+                Invalide Event Name</div>
+            <i class="fas fa-glass-cheers"></i>&nbsp;
+            <input type="text" placeholder="Event Name" formControlName="ceventname" /><br>
+            <div class="error"
+                *ngIf="(this.createForm.get('cevendate')?.touched||this.createForm.get('cevendate')?.dirty)&&this.createForm.get('cevendate')?.errors">
+                Invalide Date (proper: DD-MM-YY)</div>
+            <i class="fas fa-calendar-alt"></i>&nbsp;
+            <input type="date" placeholder="Date" formControlName="cevendate" /><br>
+            <i class="fas fa-camera-retro"></i>&nbsp;
+            <input type="text" placeholder="(Image in Url / Optional)" formControlName="ceventimg" /><br>
+            <div class="error"
+                *ngIf="(this.createForm.get('caboutevent')?.touched||this.createForm.get('caboutevent')?.dirty)&&this.createForm.get('caboutevent')?.errors">
+                Share Something</div>
+            <div style="display: flex; justify-content: center;">
+                <i class="fas fa-info-circle "></i>&nbsp;
+                <textarea name="" id="" cols="30" rows="4" placeholder="About Event"
+                    formControlName="caboutevent"></textarea><br>
+            </div>
+
+            <button class="loginbtn" (click)="createEvent()">Create</button>
+
+        </form>
+
+        <form action="" *ngIf="today" class="today-container" style="
+        background:  linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(https://picsum.photos/200/300) no-repeat ;
+        background-size: cover;
+        background-position: center;">
+
+            <p style="align-items:flex-start;">Date : <span appHighlite ng-model="date">{{lDate}}</span></p>
+            <h3>Welcome {{user}}</h3>
+            <div class="car p-5">
+                <h2>{{heading}}</h2>
+                <p>
+                    {{paragraph}}
+                </p>
+            </div>
+            <div></div>
+        </form>
+
+
+
+        <form [formGroup]="updateForm" action="" *ngIf="update" class="update-container">
+            <h3>Update Event</h3>
+            <div class="error"
+                *ngIf="(this.updateForm.get('suevendate')?.touched||this.updateForm.get('suevendate')?.dirty)&&this.updateForm.get('suevendate')?.errors">
+                Invalide Date (proper: DD-MM-YY)</div>
+
+            <input type="text" onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'"
+                [placeholder]="suphname" formControlName="suevendate" />
+            <button class="searchbtn" (click)="searchUpdate()"><i class="fas fa-search"></i></button><br>
+            <div class="error"
+                *ngIf="(this.updateForm.get('ueventname')?.touched||this.updateForm.get('ueventname')?.dirty)&&this.updateForm.get('ueventname')?.errors">
+                Invalide Event Name</div>
+            <i class="fas fa-glass-cheers"></i>&nbsp;
+            <input type="text" [placeholder]="uphename" formControlName="ueventname" /><br>
+
+            <i class="fas fa-camera-retro"></i>&nbsp;
+            <input type="text" [placeholder]="upheimg" formControlName="ueventimg" /><br>
+            <div class="error"
+                *ngIf="(this.updateForm.get('uaboutevent')?.touched||this.updateForm.get('uaboutevent')?.dirty)&&this.updateForm.get('uaboutevent')?.errors">
+                Share Something</div>
+            <div style="display: flex; justify-content: center;">
+                <i class="fas fa-info-circle "></i>&nbsp;
+                <textarea name="" id="" cols="30" rows="4" [placeholder]="upheabout"
+                    formControlName="uaboutevent"></textarea><br>
+            </div>
+
+            <button class="updatebtn" (click)="updateEvent()">Update</button>
+
+        </form>
+
+        <div *ngIf="view" class="update-container view">
+            <h3>Events</h3>
+            <div class="viewlist">
+                <ul class="view-list" *ngFor="let date of viewFullEvent">
+                    <li class="view-item">Date : {{date.cevendate}}</li>
+
+                </ul>
+            </div>
+
+            <button class="viewbtn">View</button>
+
+        </div>
+
+
+        <form action="" *ngIf="delete" class="update-container">
+            <h3>Delete Event</h3>
+
+
+            <input type="text" onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'" name="sdeventdate"
+                [(ngModel)]="sdeventdate" />
+            <button class="searchbtn" (click)="searchDelete()"><i class="fas fa-search"></i></button><br>
+
+            <i class="fas fa-glass-cheers"></i>&nbsp;
+            <input type="text" [(ngModel)]="dname" name="dname" /><br>
+            <i class="fas fa-camera-retro"></i>&nbsp;
+            <input type="text" [(ngModel)]="deventimg" name="deventimg" /><br>
+            <div style="display: flex; justify-content: center;">
+                <i class="fas fa-info-circle "></i>&nbsp;
+                <textarea name="" id="" cols="30" rows="4" [(ngModel)]="deventabout" name="deventabout"></textarea><br>
+            </div>
+
+            <button class="deletebtn" (click)="deleteEvent()">Delete</button>
+
+        </form>
+
+
+
+
+
+        <div></div>
+    </div>
+</div>
+
+
+
+
+
+<!-- <script>
+
+    var form = document.getElementById('form');
+
+    form.addEventListener('mousemove', (e) => {
+
+        var x = (window.innerWidth / 2 - e.pageX) / 12;
+        var y = (window.innerHeight / 2 - e.pageY) / 12;
+
+        form.style.transform = 'rotateX(' + x + ' deg) rotateY(' + y + 'deg)';
+    });
+    form.addEventListener('mousemove', function () {
+        form.style.transform = 'rotateX(0deg) rotateY(0deg)'
+    });
+
+
+</script> -->

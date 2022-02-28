@@ -1,0 +1,182 @@
+
+
+.error{color: red;}
+main{
+    background:  linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.75)),url(\src\assets\images\dash.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    align-items: center center;
+}
+
+
+
+*{
+    box-sizing: border-box;
+    /* font-family: Arial, Helvetica, sans-serif; */
+    transition: all .2s linear;
+}
+
+.form-container{
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-container form{
+    height: 500px;
+    width: 400px;
+    background: rgba(255,255,255,.1);
+    text-align: center ;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    border-top: 1px solid rgba(255,255,255,.3);
+    border-left: 1px solid rgba(255,255,255,.3);
+    backdrop-filter: blur(10px);
+    position: relative;
+}
+.form-container form .orginhead{
+    border: 1px solid #15f4ee ;
+    width: 120px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    font-size: 18px;
+    padding: 10px ;
+    color:#15f4ee;
+    text-transform: uppercase;
+    cursor: pointer;
+    letter-spacing: 1px;
+    border-radius: 50px;
+    transition: 1.5s;
+}
+.orginhead:hover{
+    box-shadow: 0 2px 25px 0 #15f4ee inset, 0 2px 25px 0 #15f4ee;
+}
+
+.form-container form i{
+    padding: 0 5px;
+    font-size: 20px;
+    color: #bbb;
+}
+.form-container form input{
+    outline: none;
+    border: none;
+    height: 40px;
+    width: 78%;
+    background: rgba(0,0,0,0.1);
+    color: rgba(255,255,255,.7);
+    box-shadow: 0 0 5px rgba(0,0,0,0.3) inset;
+    font-size: 17px;
+    padding: 0 10px;
+    margin: 18px 0;
+    letter-spacing: 1px; 
+    border-radius: .3rem;
+}
+.form-container form input:hover{
+    box-shadow: 0 0 5px rgba(139, 139, 139, 0.3) inset ;
+    background: rgba(144, 143, 143, 0.1);
+}
+
+.loginbtn{
+    outline: none;
+    border:  none ;
+    margin: auto;
+    margin-top: 20px;
+    width: 55%;
+    height: 40px;
+    background: linear-gradient(90deg,rgb(26, 25, 25),rgb(27, 27, 27));
+    border-radius: 40px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 90px;
+}
+
+.loginbtn::before{
+    content: "";
+    background-image: conic-gradient(
+        #15f4ee 200deg,
+        transparent 120deg
+    );
+    width: 100%;
+    height: 75%;
+    position: absolute;
+    animation: rotate 4s linear infinite;
+}
+.loginbtn::after{
+    content: "Login";
+    outline: none;
+    border: none;
+    width: 98%;
+    height: 35px;
+    background: linear-gradient(90deg,rgb(26, 25, 25),rgb(27, 27, 27));
+    position: absolute;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #15f4ee;
+    font-size: large;
+    letter-spacing: 1px;
+}
+.loginbtn:hover::after{
+    letter-spacing: 4px;
+    transition: all .2s linear;
+}
+@keyframes rotate {
+    0% {transform: rotate(0deg);}
+   100% {transform: rotate(-360deg);}
+}
+
+.registerbtn{
+    outline: none;
+    border:  none ;
+    margin: auto;
+    margin-top: 20px;
+    width: 55%;
+    height: 40px;
+    background: linear-gradient(90deg,rgb(26, 25, 25),rgb(27, 27, 27));
+    border-radius: 40px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 90px;
+}
+.registerbtn::before{
+    content: "";
+    background-image: conic-gradient(
+        #15f4ee 200deg,
+        transparent 120deg
+    );
+    width: 100%;
+    height: 75%;
+    position: absolute;
+    animation: rotate 4s linear infinite;
+}
+.registerbtn::after{
+    content: "Register";
+    outline: none;
+    border: none;
+    width: 98%;
+    height: 35px;
+    background: linear-gradient(90deg,rgb(26, 25, 25),rgb(27, 27, 27));
+    position: absolute;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #15f4ee;
+    font-size: large;
+    letter-spacing: 1px;
+}
+.selectHighlite{
+    box-shadow: 0 2px 25px 0 #15f4ee inset, 0 2px 25px 0 #15f4ee;
+}
+
