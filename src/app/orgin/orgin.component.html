@@ -1,27 +1,37 @@
 <main>
     <div class="form-container">
-        <form action="" [formGroup]="orgin" (ngSubmit)="orginForm()">
+        <form action="" [ngClass]="log?'loghight':'reghight'" [formGroup]="orgin" >
             <button class="orginhead bg-transparent" (click)="login()"
                 [ngClass]="log? 'selectHighlite' : '' ">Login</button>&nbsp;&nbsp;
             <button class="orginhead bg-transparent" (click)="register()"
                 [ngClass]="reg? 'selectHighlite' : '' ">Register</button><br>
+
             <div class="error"
-                *ngIf="(this.orgin.get('username')?.touched||this.orgin.get('username')?.dirty)&&this.orgin.get('username')?.errors">
-                Invalide Username</div>
-            <i class="fas fa-user"></i>&nbsp;
-            <input type="text" placeholder="Username" name="username" formControlName="username" /><br>
+                *ngIf="(this.orgin.get('name')?.touched||this.orgin.get('name')?.dirty)&&this.orgin.get('name')?.errors">
+                Invalide Email</div>
+            <i class="fas fa-user" *ngIf="reg"></i>&nbsp;
+            <input *ngIf="reg"  type="text" placeholder="Name" name="name" formControlName="name" /><br>
+
             <div class="error"
-                *ngIf="(this.orgin.get('uname')?.touched||this.orgin.get('uname')?.dirty)&&this.orgin.get('uname')?.errors&&reg">
+                *ngIf="(this.orgin.get('mail')?.touched||this.orgin.get('mail')?.dirty)&&this.orgin.get('mail')?.errors&&reg">
                 Invalide mail</div>
-            <i class="fas fa-at" *ngIf="reg"></i>&nbsp;
-            <input type="text" placeholder="Your Name" name="uname" formControlName="uname" *ngIf="reg"  /><br>
+            <i class="fas fa-at" ></i>&nbsp;
+            <input type="text" placeholder="Email" name="mail" formControlName="mail"  /><br>
+
+            <div class="error"
+                *ngIf="(this.orgin.get('phone')?.touched||this.orgin.get('phone')?.dirty)&&this.orgin.get('phone')?.errors&&reg">
+                Invalide Phone</div>
+            <i class="fas fa-phone" *ngIf="reg"></i>&nbsp;
+            <input type="text" placeholder="Phone Number" name="phone" formControlName="phone" *ngIf="reg"  /><br>
+
             <div class="error"
                 *ngIf="(this.orgin.get('pswd')?.touched||this.orgin.get('pswd')?.dirty)&&this.orgin.get('pswd')?.errors">
                 Invalide Password</div>
             <i class="fas fa-lock"></i>&nbsp;
             <input type="password" placeholder="Password" name="pswd" formControlName="pswd" required />
-            <button class="loginbtn" *ngIf="log" (click)="logForm()">Login</button>
-            <button class="registerbtn" *ngIf="reg" (click)="regForm()">Register</button>
+
+            <button class="button-default mt-5" *ngIf="log" (click)="logForm()">Login</button>
+            <button class="button-default mt-4" *ngIf="reg" (click)="regForm()">Register</button>
         </form>
 
     </div>

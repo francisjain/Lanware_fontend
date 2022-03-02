@@ -2,7 +2,7 @@
 
 .error{color: red;}
 main{
-    background:  linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.75)),url(\src\assets\images\dash.jpg) no-repeat;
+    background:  linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.2)),url(\src\assets\images\bgcake.jpg) no-repeat;
     background-size: cover;
     background-position: center;
     align-items: center center;
@@ -12,7 +12,7 @@ main{
 
 *{
     box-sizing: border-box;
-    /* font-family: Arial, Helvetica, sans-serif; */
+    
     transition: all .2s linear;
 }
 
@@ -23,11 +23,18 @@ main{
     align-items: center;
     justify-content: center;
 }
-
-.form-container form{
+.form-container .loghight{
     height: 500px;
     width: 400px;
-    background: rgba(255,255,255,.1);
+}
+
+.form-container .reghight{
+        height: 600px;
+        width: 400px;
+    }
+.form-container .loghight, .reghight{
+    
+    background: rgba(151, 145, 145, 0.1);
     text-align: center ;
     border-radius: 5px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
@@ -35,7 +42,10 @@ main{
     border-left: 1px solid rgba(255,255,255,.3);
     backdrop-filter: blur(10px);
     position: relative;
+    transition: all .5s linear;
 }
+
+
 .form-container form .orginhead{
     border: 1px solid #15f4ee ;
     width: 120px;
@@ -76,6 +86,44 @@ main{
 .form-container form input:hover{
     box-shadow: 0 0 5px rgba(139, 139, 139, 0.3) inset ;
     background: rgba(144, 143, 143, 0.1);
+}
+
+.button-default:hover {
+    background: white;
+    color: #B58A4B;
+    display: inline-block;
+    font-size: 13px;
+    margin: 0;
+    width: 55%;
+    height: 40px;
+    /* padding: 18px 32px; */
+    text-transform: uppercase;
+    font-weight: 550;
+    font-family: 'Montserrat', sans-serif;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    border-radius: 28px;
+    border: 1px solid #B58A4B;
+    letter-spacing: 3px;
+    transition: all .2s linear;
+}
+
+.button-default{
+    color: white;
+    background: #B58A4B;
+    display: inline-block;
+    font-size: 13px;
+    margin: 0;
+    width: 55%;
+    height: 40px;
+    /* padding: 18px 35px; */
+    text-transform: uppercase;
+    font-weight: 550;
+    font-family: 'Montserrat', sans-serif;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    border-radius: 28px;
+    border: 1px solid #B58A4B;
 }
 
 .loginbtn{

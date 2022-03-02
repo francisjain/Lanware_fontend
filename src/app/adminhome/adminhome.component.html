@@ -1,0 +1,144 @@
+<main>
+    <header class="primary-header flex bg-transparent pt-4 mb-5">
+        <div class="text-white ms-5"><i class="fab fa-jedi-order fa-5x text-center"></i></div>
+        <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false"><span
+                class="sr-only">Menu</span></button>
+        <nav>
+            <ul id="primary-navigation" data-visible="false" class="primary-navigation flex">
+                <li class="active "><a (click)="Home()" class="ff-sans-cond uppercase text-white letter-spacing-2"><span
+                            aria-hidden="true">00</span>Home</a></li>
+                <li class="active"><a (click)="product()"
+                        class="ff-sans-cond uppercase text-white letter-spacing-2"><span
+                            aria-hidden="true">01</span>Product</a></li>
+                <li class="active"><a (click)="updateProduct()"
+                        class="ff-sans-cond uppercase text-white letter-spacing-2"><span
+                            aria-hidden="true">03</span>Update Product</a></li>
+                <li class="active"><a (click)="logout()"
+                        class="ff-sans-cond uppercase text-white letter-spacing-2"><span
+                            aria-hidden="true">04</span>LogOut</a></li>
+                <!-- <li class="active"><a (click)="userdelete()"
+                        class="ff-sans-cond uppercase text-white letter-spacing-2 btn btn-danger">Delete User</a>
+                </li> -->
+
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ----------------------------------body----------------------- -->
+    <div class="form-container ">
+        <div class="btnlist">
+            <button class="car carbtn" (click)="Home()">Home</button>
+            <button class="car carbtn" (click)="product()">Product</button>
+            <button class="car carbtn" (click)="updateProduct()">Update Product</button>
+            <button class="car carbtn" (click)="logout()">LogOut</button>
+            <button class="car carbtn" (click)="userdelete()">Delete User</button>
+        </div>
+
+
+        <div *ngIf="userlist" class="update-container view">
+            <button class="orginhead bg-transparent" (click)="userlistfn()"
+                [ngClass]="userlistd? 'selectHighlite' : '' ">User List</button>&nbsp;&nbsp;
+            <button class="orginhead bg-transparent" (click)="activeuserfn()"
+                [ngClass]="activeuser? 'selectHighlite' : '' ">Active User</button><br>
+            <div class="viewlist">
+                <!-- <ul class="view-list" *ngFor="let date of viewuserlist">
+                <li class="view-item">Date : {{date.cevendate}}</li>
+
+            </ul> -->
+
+                <ul class="view-list mt-3" *ngFor="let data of viewuser" >
+                        <li><button (click)="showUser()" class="view-item ">
+                                <p>2022-03-02</p>
+                                <h1>{{data}}</h1>
+                                <!-- <button class="searchuser text-danger text-center bg-white"><i class="fas fa-trash"></i></button> -->
+                            </button></li>
+                    
+                   
+                </ul>
+
+            </div>
+
+            <button class="button-default mt-5">View</button>
+
+        </div>
+
+        <div class="update-container" *ngIf="userdt">
+
+            <form style="margin-top: 80px;">
+                <i class="fas fa-user"></i>&nbsp;
+                <input type="text" placeholder="Name" name="name" formControlName="name" /><br><br>
+
+
+                <i class="fas fa-at"></i>&nbsp;
+                <input type="text" placeholder="Email" name="mail" formControlName="mail" /><br><br>
+
+
+                <i class="fas fa-phone"></i>&nbsp;
+                <input type="text" placeholder="Phone Number" name="phone" formControlName="phone" /><br><br>
+
+
+                <i class="fas fa-lock"></i>&nbsp;
+                <input type="password" placeholder="Password" name="pswd" formControlName="pswd" required /><br>
+
+                <button class="button-default mt-5" (click)="userdelete()">Delete User</button>
+                <button class="button-default mt-4" (click)="back()">Back</button>
+            </form>
+
+        </div>
+
+
+        <div class="product-container" *ngIf="itemup">
+            <form action="" [ngClass]="upitem?'uphight':'ctehight'" [formGroup]="productForm">
+                <button class="orginhead bg-transparent" (click)="updateProduct()"
+                    [ngClass]="upitem? 'selectHighlite' : '' ">Update Product</button>&nbsp;&nbsp;
+                <button class="orginhead  bg-transparent" (click)="cteProduct()"
+                    [ngClass]="cteitem? 'selectHighlite' : '' ">Create Product</button><br>
+
+                <div class="error"
+                    *ngIf="(this.productForm.get('searchname')?.touched||this.productForm.get('searchname')?.dirty)&&this.productForm.get('searchname')?.errors">
+                    Invalide Data</div>
+
+                <input *ngIf="upitem" type="text" placeholder="Search By Item Name" formControlName="searchname" />
+                <button *ngIf="upitem" class="searchbtn" (click)="searchUpdate()"><i
+                        class="fas fa-search"></i></button><br>
+                <div class="error"
+                    *ngIf="(this.productForm.get('pname')?.touched||this.productForm.get('pname')?.dirty)&&this.productForm.get('pname')?.errors">
+                    Invalide Email</div>
+                <i class="fas fa-gift"></i>&nbsp;
+                <input type="text" placeholder="Name" name="name" formControlName="pname" /><br>
+
+                <div class="error"
+                    *ngIf="(this.productForm.get('price')?.touched||this.productForm.get('price')?.dirty)&&this.productForm.get('price')?.errors">
+                    Invalide Price</div>
+                    <i class="fas fa-dollar-sign"></i>&nbsp;
+                <input type="text" placeholder="Price" name="price" formControlName="price" /><br>
+
+                <div class="error"
+                    *ngIf="(this.productForm.get('pimg')?.touched||this.productForm.get('pimg')?.dirty)&&this.productForm.get('pimg')?.errors">
+                    Invalide Url for Image</div>
+                    <i class="fas fa-camera-retro"></i>&nbsp;
+                <input type="text" placeholder="Url Image" name="pimg" formControlName="pimg" /><br>
+
+                <div class="error"
+                    *ngIf="(this.productForm.get('pdetails')?.touched||this.productForm.get('pdetails')?.dirty)&&this.productForm.get('pdetails')?.errors">
+                    Invalide Password</div>
+                    <div style="display: flex; justify-content: center;">
+                        <i class="fas fa-info-circle "></i>&nbsp;
+                        <textarea name="pdetails" id="pdetails" cols="30" rows="4" placeholder="Share Something"
+                            formControlName="uaboutevent"></textarea><br>
+                    </div>
+
+                <button class="button-default mt-4" *ngIf="upitem" (click)="updateItem()">Update</button>
+                <button class="button-default mt-4" *ngIf="cteitem" (click)="createItem()">Create</button>
+                <button class="button-default mt-4" *ngIf="upitem" (click)="deleteItem()">Delete</button>
+            </form>
+        </div>
+
+
+        <div></div>
+
+    </div>
+
+    <!-- ----------------------------------body----------------------- -->
+
+</main>

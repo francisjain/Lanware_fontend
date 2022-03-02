@@ -12,22 +12,36 @@ export class DataServiceService {
 
   constructor(private http:HttpClient) { }
 
-  register(username: any, uname: any, password: any) {
+  register(uname: any, email: any,phone:any, password: any, date:any) {
     const data ={
-      username,password,uname
+      uname,email,phone,password,date
     }
-    return this.http.post("http://localhost:9000/register",data)
+    return this.http.post("http://localhost:3000/register",data)
   }
 
 
 
-  login(username: any, password: any) {
+  login(email: any, password: any) {
     const data ={
-      username,password
+      email,password
     }
-    return this.http.post("http://localhost:9000/login",data)
+    return this.http.post("http://localhost:3000/login",data)
     // return this.http.post(environment.apiUrl+"/login",data)
   }
+
+  viewUser(){
+    return this.http.post("http://localhost:3000/userlist","",this.getOptions())
+  }
+
+
+
+
+
+
+
+
+
+
 
   createEvent(ceventname: any, cevendate: any,ceventimg: any, caboutevent: any){
     const data ={

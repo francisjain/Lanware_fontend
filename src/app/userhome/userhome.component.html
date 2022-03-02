@@ -1,0 +1,95 @@
+<main>
+    <header class="primary-header flex bg-transparent pt-4 mb-5">
+        <div class="text-white ms-4"><i class="fab fa-jedi-order fa-5x text-center"></i></div>
+        <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false"><span
+                class="sr-only">Menu</span></button>
+        <nav>
+            <ul id="primary-navigation" data-visible="false" class="primary-navigation flex">
+                <li class="active "><a (click)="userhome()"
+                        class="ff-sans-cond uppercase text-white letter-spacing-2"><span
+                            aria-hidden="true">00</span>Home</a></li>
+                <li class="active"><a (click)="about()"
+                        class="ff-sans-cond uppercase text-white letter-spacing-2"><span
+                            aria-hidden="true">01</span>About</a></li>
+                <!-- <li class="active"><a (click)="viewE()" class="ff-sans-cond uppercase text-white letter-spacing-2"><span
+                            aria-hidden="true">03</span>View Event</a></li> -->
+                <li class="active"><a (click)="userlogout()"
+                        class="ff-sans-cond uppercase text-white letter-spacing-2"><span
+                            aria-hidden="true">04</span>LogOut</a></li>
+                <li class="active"><a (click)="deleteUser()"
+                        class="ff-sans-cond uppercase text-white letter-spacing-2 btn btn-danger">Delete Account</a>
+                </li>
+
+            </ul>
+        </nav>
+    </header>
+
+<!-- ----------------------------------body----------------------- -->
+<div class="userbodyContainer">
+    <div class="input-group mb-3" style="width: 44vw;">
+        <input  type="text" class="form-control text-white bg-transparent" placeholder="Search by Name" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <button class="btn btn-light text-info"   type="button" id="button-addon2" ><i class="fas fa-search-location"></i></button>
+      </div>
+
+      <div class="itemslist rounded-3">
+        <div class="row">
+            <button (click)="detail()" class="card col-lg-3 col-md-4  col-6 m-5" style="width: 18rem;">
+                <img src="https://picsum.photos/200/300" class="card-img-top" alt="..." height="200px">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </button>
+    
+              <div class="card col-lg-3 col-md-4  col-6 m-5" style="width: 18rem;">
+                <img src="https://picsum.photos/200/300" class="card-img-top" alt="..." height="200px">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
+    
+              <div class="card col-lg-3 col-md-4  col-6 m-5" style="width: 18rem;">
+                <img src="https://picsum.photos/200/300" class="card-img-top" alt="..." height="200px">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
+    
+              <div class="card col-lg-3 col-md-4  col-6 m-5" style="width: 18rem;">
+                <img src="https://picsum.photos/200/300" class="card-img-top" alt="..." height="200px">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
+    
+              <div class="card col-lg-3 col-md-4  col-6 m-5" style="width: 18rem;">
+                <img src="https://picsum.photos/200/300" class="card-img-top" alt="..." height="200px">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
+    
+              <div class="card col-lg-3 col-md-4  col-6 m-5" style="width: 18rem;">
+                <img src="https://picsum.photos/200/300" class="card-img-top" alt="..." height="200px">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
+        </div>
+      </div>
+</div>
+
+<!-- ----------------------------------body----------------------- -->
+
+</main>

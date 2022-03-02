@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -10,29 +11,36 @@ import { DataServiceService } from '../services/data-service.service';
 })
 export class OrginComponent implements OnInit {
 
+
+  lDate:any
+
   reg = false
   log = true
 
   orgin = this.fb.group({
-    username: ["", [Validators.required, Validators.pattern('[a-zA-Z0-9 ]*')]],
-    uname: ["", [Validators.pattern('[a-zA-Z ]*')]],
-    pswd: ["", [Validators.required, Validators.pattern('[a-zA-Z0-9 ]*')]]
+    name: ["", [ Validators.pattern('[a-zA-Z ]*')]],
+    mail: ["", [Validators.required,Validators.pattern('[a-zA-Z0-9@. ]*')]],
+    phone: ["", [Validators.pattern('[0-9 ]*')]],
+    pswd: ["", [Validators.required, Validators.pattern('[a-zA-Z0-9@. ]*')]]
   })
  
-  constructor(private ds: DataServiceService, private fb: FormBuilder, private router: Router) { }
+  constructor(private ds: DataServiceService, private fb: FormBuilder, private router: Router) { 
+    
+    this.lDate = formatDate(new Date(), 'yyyy-MM-dd', 'en')
+    console.log(this.lDate);
+  }
 
   ngOnInit(): void {
   }
-  orginForm() {
-
-  }
+  
   regForm() {
 
     if (this.orgin.valid) {
-      var username = this.orgin.value.username
-      var uname = this.orgin.value.uname
+      var name = this.orgin.value.name
+      var mail = this.orgin.value.mail
+      var phone = this.orgin.value.phone
       var pswd = this.orgin.value.pswd
-      this.ds.register(username, uname, pswd)
+      this.ds.register(name, mail,phone, pswd, this.lDate)
         .subscribe((result: any) => {
           if (result) {
             alert(result.message)
@@ -50,18 +58,19 @@ export class OrginComponent implements OnInit {
   }
 
   logForm() {
-    var username = this.orgin.value.username
-      var password = this.orgin.value.pswd
+    var mail = this.orgin.value.mail
+    var password = this.orgin.value.pswd
     if (this.orgin.valid) {
       
-      this.ds.login(username, password)
+      this.ds.login(mail, password)
         .subscribe((result: any) => {
           if (result) {
             alert(result.message)
             localStorage.setItem("currentuser", JSON.stringify(result.currentuser))
-            localStorage.setItem("currentuserName", JSON.stringify(result.currentuserName))
+            localStorage.setItem("currentname", JSON.stringify(result.currentname))
             localStorage.setItem("token", JSON.stringify(result.token))
-            this.router.navigateByUrl(`dashboard`)
+            if(result.statusCode==201){this.router.navigateByUrl(`adminhome`)}
+            else if(result.statusCode==202){this.router.navigateByUrl(`userhome`)}
           }
         },
           (result) => {
